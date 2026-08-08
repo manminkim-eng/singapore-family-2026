@@ -165,6 +165,7 @@
     <div class="brand">
       <span class="eyebrow">MANMIN FAMILY TRIP</span>
       <div class="hbtns">
+        <span class="hbtn" id="fxBtn">💱 환율</span>
         <span class="hbtn" id="installBtn">⬇ 설치</span>
       </div>
     </div>
@@ -172,10 +173,8 @@
     <div class="subttl">최종 확정 일정 · 2026-08-15(토) ~ 08-19(수) · 4인 (기내 1박)</div>
     <div class="ticker"><span id="dday">D-…</span><span id="sgclock">🇸🇬 --:--:--</span></div>
     <div class="meta">
-      <span class="chip">🚌 익산 <b>08-15 14:50</b> → 인천 T2</span>
       <span class="chip">✈ <b>KE647</b> 23:35 → 창이 05:00</span>
       <span class="chip">🛬 <b>KE646</b> 08-19 01:25 → 08:50</span>
-      <span class="chip">🌶 향신료 <b>순한 메뉴 우선</b></span>
     </div>
     <div class="days" id="days"></div>
   </div>
@@ -225,6 +224,21 @@
     지도·영상·검색 버튼은 스마트폰에서 앱으로 바로 연결됩니다
   </footer>
 </main>
+
+<!-- 환율 계산기 팝업 -->
+<div class="ov" id="fxOv">
+  <div class="sheet">
+    <h3>💱 환율 계산기 (SGD ↔ KRW)</h3>
+    <div class="fx">
+      <div class="fxrow"><label>SGD</label><input id="fxSgd" type="number" inputmode="decimal" placeholder="0" value="100"></div>
+      <div class="swapline">▲ 싱가포르 달러 · 원화 ▼</div>
+      <div class="fxrow"><label>KRW</label><input id="fxKrw" type="number" inputmode="decimal" placeholder="0"></div>
+      <div class="fxrate">적용 환율 1 SGD = <input id="fxRate" type="number" inputmode="decimal" value="1180"> 원</div>
+    </div>
+    <div class="note"><span id="fxStatus">환율 불러오는 중…</span> · 자동 조회 실패 시 수동값 사용 (기기에 저장)</div>
+    <button class="close" id="fxClose">확인</button>
+  </div>
+</div>
 
 <!-- iOS 설치 안내 -->
 <div class="ov" id="iosOv">
@@ -337,19 +351,6 @@ const IMMI_BTN=`
    </div>
   </section>`;
 
-const FX_HTML=`
-  <section class="blk"><h2>💱 환율 계산기 (SGD ↔ KRW)</h2>
-   <button class="fxtoggle" id="fxToggle" type="button">환율 계산기 열기 ▾</button>
-   <div class="fxbody" id="fxBody" hidden>
-    <div class="fx">
-      <div class="fxrow"><label>SGD</label><input id="fxSgd" type="number" inputmode="decimal" placeholder="0" value="100"></div>
-      <div class="swapline">▲ 싱가포르 달러 · 원화 ▼ (실시간 아님·수동 환율)</div>
-      <div class="fxrow"><label>KRW</label><input id="fxKrw" type="number" inputmode="decimal" placeholder="0"></div>
-      <div class="fxrate">적용 환율 1 SGD = <input id="fxRate" type="number" inputmode="decimal" value="1180"> 원</div>
-    </div>
-    <div class="note"><span id="fxStatus">환율 불러오는 중…</span> · 자동 조회 실패 시 수동 입력값을 사용합니다. (값은 기기에 저장됩니다)</div>
-   </div></section>`;
-
 let curDay=0;
 const mapUrl=q=>"https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(q);
 const ytUrl =q=>"https://www.youtube.com/results?search_query="+encodeURIComponent(q+" 싱가포르 여행")+"&sp=CAMSAhAB";
@@ -381,24 +382,17 @@ function renderTimeline(){
 function renderExtras(){
   const el=document.getElementById('dayExtras');
   if(curDay===0)      el.innerHTML=TRANSPORT_HTML + ckHtml("출발 전 준비 체크리스트",DEPART_CK) + ARRIVAL_CARD_BTN + MBTI_HTML;
-  else if(curDay===4) el.innerHTML=ckHtml("귀국 체크리스트",RETURN_CK) + IMMI_BTN + FX_HTML;
+  else if(curDay===4) el.innerHTML=ckHtml("귀국 체크리스트",RETURN_CK) + IMMI_BTN;
   else                el.innerHTML="";
   el.querySelectorAll('.cklist li').forEach(li=>{
     try{ if(localStorage.getItem(li.dataset.key)==='1') li.classList.add('done'); }catch(e){}
   });
-  if(curDay===4) initFx();
 }
 
-// 환율 계산기 (Day4에서 렌더될 때마다 초기화)
+// 환율 계산기 (헤더 팝업 · 로드 시 1회 초기화)
 function initFx(){
-  const toggle=document.getElementById('fxToggle'), body=document.getElementById('fxBody');
   const sgd=document.getElementById('fxSgd'), krw=document.getElementById('fxKrw'), rate=document.getElementById('fxRate');
-  if(!toggle||!body||!sgd) return;
-  toggle.addEventListener('click',()=>{
-    const open=body.hasAttribute('hidden');
-    if(open){body.removeAttribute('hidden');toggle.classList.add('on');toggle.textContent='환율 계산기 닫기 ▴';}
-    else{body.setAttribute('hidden','');toggle.classList.remove('on');toggle.textContent='환율 계산기 열기 ▾';}
-  });
+  if(!sgd) return;
   try{ const r=localStorage.getItem('fxRate'); if(r) rate.value=r; }catch(e){}
   const fmt=n=>isFinite(n)?Math.round(n).toLocaleString('ko-KR'):"";
   function fromSgd(){ const r=parseFloat(rate.value)||0, v=parseFloat(sgd.value); krw.value=isFinite(v)?fmt(v*r):""; }
@@ -451,6 +445,13 @@ installBtn.addEventListener('click',async()=>{
 });
 document.getElementById('iosClose').addEventListener('click',()=>iosOv.classList.remove('on'));
 iosOv.addEventListener('click',e=>{ if(e.target===iosOv) iosOv.classList.remove('on'); });
+
+// ===== 환율 계산기 팝업 =====
+const fxBtn=document.getElementById('fxBtn'), fxOv=document.getElementById('fxOv');
+fxBtn.addEventListener('click',()=>fxOv.classList.add('on'));
+document.getElementById('fxClose').addEventListener('click',()=>fxOv.classList.remove('on'));
+fxOv.addEventListener('click',e=>{ if(e.target===fxOv) fxOv.classList.remove('on'); });
+initFx();
 
 // ===== D-day + 싱가포르 현지 시각 =====
 (function(){
