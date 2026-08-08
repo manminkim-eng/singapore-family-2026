@@ -431,7 +431,11 @@ bindTap(document.getElementById('dayExtras'),'.cklist li',li=>{
 });
 
 // ===== PWA 설치 =====
-if('serviceWorker' in navigator){ window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{})); }
+if('serviceWorker' in navigator){
+  window.addEventListener('load',()=>{ navigator.serviceWorker.register('./sw.js').then(r=>{ try{r.update();}catch(e){} }).catch(()=>{}); });
+  let _swReloaded=false;
+  navigator.serviceWorker.addEventListener('controllerchange',()=>{ if(_swReloaded) return; _swReloaded=true; location.reload(); });
+}
 const installBtn=document.getElementById('installBtn');
 const iosOv=document.getElementById('iosOv');
 let deferred=null;
