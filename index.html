@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#123a63">
+<title>MANMIN Family Trip · Singapore 2026</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="manifest" href="manifest.json">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="SG 2026">
+
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<style>
+  /* ===== 사용자 폰트("73") 자리 — fonts/ 폴더에 파일 업로드 후 확정 ===== */
+  @font-face{
+    font-family:"ManminFont";
+    src:url("fonts/manmin.woff2") format("woff2"),
+        url("fonts/manmin.ttf") format("truetype");
+    font-weight:100 900; font-display:swap;
+  }
+  :root{
+    --ink:#1f2933; --sub:#52616b; --line:#e3e8ee; --bg:#f5f7fa;
+    --navy:#123a63; --navy2:#1d5b8f; --gold:#b8860b; --red:#c0392b;
+    --green:#1e7d5a; --chip:#eef3f8; --card:#ffffff;
+    --safeT:env(safe-area-inset-top); --safeB:env(safe-area-inset-bottom);
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;padding-bottom:calc(24px + var(--safeB));
+    font-family:"ManminFont","Pretendard",-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+    color:var(--ink);background:var(--bg);line-height:1.6;letter-spacing:-.01em;-webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:720px;margin:0 auto;padding:0 14px;}
+
+  header{position:sticky;top:0;z-index:30;padding:calc(14px + var(--safeT)) 14px 12px;
+    background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;box-shadow:0 6px 18px rgba(18,58,99,.28);}
+  header .inner{max-width:720px;margin:0 auto;}
+  .brand{display:flex;align-items:center;justify-content:space-between;gap:8px;}
+  .brand .eyebrow{font-size:11.5px;letter-spacing:.14em;opacity:.9;font-weight:700;}
+  .hbtns{display:flex;gap:6px;}
+  .hbtn{display:inline-flex;align-items:center;gap:5px;color:#fff;text-decoration:none;cursor:pointer;
+    font-size:11.5px;font-weight:700;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.34);
+    padding:6px 10px;border-radius:999px;}
+  .hbtn svg{width:15px;height:15px;fill:#fff;}
+  #installBtn{display:none;background:#ffe08a;color:#5a3d00;border-color:#ffe08a;}
+  h1{margin:7px 0 3px;font-size:22px;font-weight:800;letter-spacing:-.4px;}
+  .subttl{font-size:12.5px;opacity:.95;}
+  .ticker{display:flex;gap:8px;margin-top:8px;}
+  .ticker span{font-size:12px;font-weight:800;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.3);
+    padding:5px 10px;border-radius:999px;font-variant-numeric:tabular-nums;}
+  #dday{color:#ffe08a;}
+  .meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;}
+  .chip{font-size:11.5px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);padding:4px 9px;border-radius:999px;white-space:nowrap;}
+  .chip b{color:#ffe08a;}
+  .days{display:flex;gap:7px;overflow-x:auto;padding:11px 0 2px;scrollbar-width:none;}
+  .days::-webkit-scrollbar{display:none;}
+  .day-btn{flex:0 0 auto;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.1);color:#eaf0fb;
+    border-radius:11px;padding:7px 12px;font-size:12.5px;font-weight:700;cursor:pointer;transition:.15s;white-space:nowrap;}
+  .day-btn small{display:block;font-size:9.5px;opacity:.8;font-weight:600;}
+  .day-btn.active{background:#fff;color:var(--navy);border-color:#fff;}
+  .day-btn.active small{color:var(--navy2);opacity:1;}
+
+  main{padding-top:14px;}
+  .day-head{display:flex;align-items:baseline;justify-content:space-between;margin:4px 2px 12px;}
+  .day-head .dt{font-size:17px;font-weight:800;color:var(--navy);}
+  .day-head .tag{font-size:11.5px;color:var(--sub);}
+
+  .tl{position:relative;padding-left:20px;}
+  .tl::before{content:"";position:absolute;left:6px;top:8px;bottom:8px;width:2px;background:var(--line);}
+  .item{position:relative;margin-bottom:12px;}
+  .item::before{content:"";position:absolute;left:-17px;top:16px;width:11px;height:11px;border-radius:50%;
+    background:var(--navy2);border:2px solid var(--bg);box-shadow:0 0 0 2px var(--navy2);}
+  .item.fly::before{background:var(--red);box-shadow:0 0 0 2px var(--red);}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 13px;box-shadow:0 2px 6px rgba(0,0,0,.03);}
+  .row1{display:flex;align-items:center;gap:9px;}
+  .time{font-size:13px;font-weight:800;color:var(--navy2);font-variant-numeric:tabular-nums;white-space:nowrap;}
+  .title{font-size:14.5px;font-weight:700;flex:1;}
+  .en{display:block;font-size:11px;color:var(--sub);font-weight:500;margin-top:1px;}
+  .info{font-size:12px;color:var(--sub);margin-top:5px;}
+  .info .k{color:#93a1b3;}
+  .todo{color:var(--red);font-weight:700;}
+  .links{display:flex;gap:6px;margin-top:9px;}
+  .lnk{flex:1;text-align:center;text-decoration:none;font-size:11.5px;font-weight:700;padding:8px 3px;border-radius:10px;border:1px solid var(--line);transition:.15s;}
+  .lnk.map{background:rgba(29,91,143,.1);color:var(--navy2);border-color:rgba(29,91,143,.3);}
+  .lnk.yt{background:rgba(192,57,43,.09);color:var(--red);border-color:rgba(192,57,43,.28);}
+  .lnk.se{background:rgba(30,125,90,.1);color:var(--green);border-color:rgba(30,125,90,.3);}
+  .lnk:active{transform:scale(.97);}
+
+  section.blk{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:15px;margin-top:16px;box-shadow:0 2px 8px rgba(0,0,0,.03);}
+  section.blk h2{margin:0 0 12px;font-size:16px;font-weight:800;color:var(--navy);border-left:5px solid var(--navy2);padding-left:10px;}
+  table{width:100%;border-collapse:collapse;font-size:13px;}
+  th,td{border:1px solid var(--line);padding:8px 9px;text-align:left;vertical-align:top;}
+  th{background:var(--chip);color:var(--navy);font-weight:700;white-space:nowrap;}
+  td.k{white-space:nowrap;font-weight:700;color:var(--navy2);width:88px;}
+  .warn{background:#fff4f2;border-left:4px solid var(--red);padding:9px 12px;border-radius:6px;font-size:12.5px;color:#7a2b20;margin:4px 0;}
+  .note{background:#f0f6ff;border-left:4px solid var(--navy2);padding:9px 12px;border-radius:6px;font-size:12.5px;color:var(--sub);margin:8px 0 0;}
+  .mbti{display:grid;gap:8px;}
+  .mbti .m{background:var(--chip);border:1px solid var(--line);border-radius:12px;padding:10px 12px;}
+  .mbti .m .h{font-size:13px;font-weight:800;color:var(--navy);}
+  .mbti .m .b{font-size:12px;color:var(--sub);margin-top:3px;}
+
+  .cklist{list-style:none;padding:0;margin:0;display:grid;gap:8px;}
+  .cklist li{display:flex;gap:10px;align-items:flex-start;background:var(--chip);border:1px solid var(--line);border-radius:11px;
+    padding:10px 11px;font-size:12.5px;color:var(--ink);cursor:pointer;transition:.15s;-webkit-user-select:none;user-select:none;}
+  .cklist li .bx{flex:0 0 18px;width:18px;height:18px;border:2px solid #adb9c7;border-radius:5px;margin-top:1px;display:flex;align-items:center;justify-content:center;font-size:12px;color:transparent;transition:.15s;}
+  .cklist li.done{opacity:.55;}
+  .cklist li.done .bx{background:var(--green);border-color:var(--green);color:#fff;}
+  .cklist li.done .t{text-decoration:line-through;}
+  .cklist li b{color:var(--navy);}
+
+  /* action buttons (출입국카드 등) */
+  .acts{display:grid;gap:8px;margin-top:10px;}
+  .act{display:flex;align-items:center;gap:10px;text-decoration:none;background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px;color:var(--ink);font-size:13px;font-weight:700;}
+  .act .ico{font-size:18px;}
+  .act small{display:block;font-weight:500;color:var(--sub);font-size:11px;margin-top:1px;}
+  .act.blue{border-color:rgba(29,91,143,.35);background:rgba(29,91,143,.06);}
+  .act.red{border-color:rgba(192,57,43,.3);background:rgba(192,57,43,.05);}
+
+  /* 환율 계산기 */
+  .fx{display:grid;gap:10px;}
+  .fxrow{display:flex;align-items:center;gap:8px;}
+  .fxrow label{flex:0 0 54px;font-size:13px;font-weight:800;color:var(--navy);}
+  .fxrow input{flex:1;width:100%;font-size:16px;font-weight:700;color:var(--ink);text-align:right;
+    padding:11px 12px;border:1px solid var(--line);border-radius:11px;background:#fff;font-variant-numeric:tabular-nums;}
+  .fxrow input:focus{outline:2px solid var(--navy2);border-color:var(--navy2);}
+  .fxrate{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--sub);}
+  .fxrate input{width:92px;text-align:right;padding:6px 8px;border:1px solid var(--line);border-radius:8px;font-weight:700;}
+  .swapline{text-align:center;color:var(--navy2);font-size:12px;font-weight:700;}
+  .fxtoggle{width:100%;padding:12px;border:1px solid rgba(184,134,11,.4);background:rgba(184,134,11,.08);
+    color:var(--gold);font-weight:800;font-size:14px;border-radius:12px;cursor:pointer;}
+  .fxtoggle.on{background:var(--gold);color:#fff;border-color:var(--gold);}
+  .fxbody{margin-top:12px;}
+  .fxbody[hidden]{display:none;}
+
+  .embassy{background:linear-gradient(160deg,#fff6f4,#fff);border:1px solid #f0cfc9;}
+  .embassy h2{border-left-color:var(--red);color:#a5342a;}
+  .emg{display:grid;gap:9px;}
+  .emg a{display:flex;align-items:center;gap:10px;text-decoration:none;background:#fff;border:1px solid #f0cfc9;border-radius:11px;padding:11px 12px;color:var(--ink);font-size:13px;}
+  .emg a:active{transform:scale(.99);}
+  .emg .ico{font-size:16px;}
+  .emg .lab{font-size:11px;color:var(--red);font-weight:700;flex:0 0 84px;}
+  .emg .val{font-weight:700;font-variant-numeric:tabular-nums;}
+  .emg .val small{display:block;font-weight:500;color:var(--sub);font-size:11px;}
+
+  footer{text-align:center;color:var(--sub);font-size:11px;margin:20px 0 4px;line-height:1.7;}
+
+  /* iOS 설치 안내 오버레이 */
+  .ov{position:fixed;inset:0;z-index:60;background:rgba(15,25,40,.55);display:none;align-items:flex-end;}
+  .ov.on{display:flex;}
+  .sheet{background:#fff;width:100%;max-width:720px;margin:0 auto;border-radius:18px 18px 0 0;padding:18px 18px calc(20px + var(--safeB));}
+  .sheet h3{margin:0 0 8px;font-size:16px;color:var(--navy);}
+  .sheet p{font-size:13px;color:var(--sub);margin:6px 0;}
+  .sheet .close{margin-top:12px;width:100%;padding:12px;border:0;border-radius:12px;background:var(--navy);color:#fff;font-weight:800;font-size:14px;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="inner">
+    <div class="brand">
+      <span class="eyebrow">MANMIN FAMILY TRIP</span>
+      <div class="hbtns">
+        <span class="hbtn" id="installBtn">⬇ 설치</span>
+      </div>
+    </div>
+    <h1>가족 싱가포르 여행 2026 🇸🇬</h1>
+    <div class="subttl">최종 확정 일정 · 2026-08-15(토) ~ 08-19(수) · 4인 (기내 1박)</div>
+    <div class="ticker"><span id="dday">D-…</span><span id="sgclock">🇸🇬 --:--:--</span></div>
+    <div class="meta">
+      <span class="chip">🚌 익산 <b>08-15 14:50</b> → 인천 T2</span>
+      <span class="chip">✈ <b>KE647</b> 23:35 → 창이 05:00</span>
+      <span class="chip">🛬 <b>KE646</b> 08-19 01:25 → 08:50</span>
+      <span class="chip">🌶 향신료 <b>순한 메뉴 우선</b></span>
+    </div>
+    <div class="days" id="days"></div>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="day-head"><div class="dt" id="dayTitle"></div><div class="tag" id="dayTag"></div></div>
+  <div class="tl" id="timeline"></div>
+
+  <!-- Day별 컨텍스트 섹션 (Day0: 교통·출발체크리스트 / Day4: 귀국체크리스트·출입국카드) -->
+  <div id="dayExtras"></div>
+
+  <!-- 음식 -->
+  <section class="blk">
+    <h2>🍽 음식 메모 (아내 ISFP · 향신료 약함)</h2>
+    <div class="warn"><b>순한 메뉴 우선:</b> 하이난 치킨라이스, 딤섬, 로스트미트, 바쿠테(후추 국물), 블랙페퍼 크랩. <b>주의:</b> 락사·커리·칠리크랩 등 매운 향신료 요리. 주문 시 <b>“no chili / less spicy / no coriander”</b>.</div>
+  </section>
+
+  <!-- 현지 팁 -->
+  <section class="blk">
+    <h2>🧳 현지 팁 (싱가포르)</h2>
+    <table>
+      <tr><td class="k">8월 날씨</td><td>고온다습(28~32℃)·오후 스콜 잦음 → 우산·실내 위주, 실내 <b>강냉방</b> 대비 얇은 겉옷</td></tr>
+      <tr><td class="k">교통 결제</td><td>MRT·버스는 <b>애플페이 등 컨택리스 카드</b>로 바로 태그(자녀 아이폰 애플페이 가능) · 이동은 <b>Grab</b> 앱</td></tr>
+      <tr><td class="k">벌금 주의</td><td>지하철 내 <b>음식·음료 금지</b>, 껌 반입 주의, 지정구역 외 <b>금연</b>, 무단횡단 금지 (벌금 도시)</td></tr>
+      <tr><td class="k">전압·물</td><td>230V <b>G타입 3핀</b> 어댑터 · 수돗물 음용 가능</td></tr>
+      <tr><td class="k">팁 문화</td><td>대부분 서비스차지 10% 포함 → <b>별도 팁 불필요</b></td></tr>
+    </table>
+  </section>
+
+  <!-- 대사관 -->
+  <section class="blk embassy">
+    <h2>🇰🇷 비상 연락망 · 주싱가포르 대한민국 대사관</h2>
+    <div class="emg">
+      <a href="tel:999"><span class="ico">🚓</span><span class="lab">경찰</span><span class="val">999<small>Police · 긴급</small></span></a>
+      <a href="tel:995"><span class="ico">🚑</span><span class="lab">구급·화재</span><span class="val">995<small>Ambulance / Fire</small></span></a>
+      <a href="tel:+6563259911"><span class="ico">ℹ️</span><span class="lab">관광 핫라인</span><span class="val">+65 6325 9911<small>Tourist Hotline</small></span></a>
+      <a href="tel:+6562561188"><span class="ico">☎</span><span class="lab">대사관 대표</span><span class="val">+65 6256 1188<small>월–금 09:00–18:00</small></span></a>
+      <a href="tel:+6596543528"><span class="ico">🚨</span><span class="lab">대사관 긴급</span><span class="val">+65 9654 3528<small>근무시간 외 · 24시간</small></span></a>
+      <a href="tel:+82232100404"><span class="ico">📞</span><span class="lab">영사콜센터</span><span class="val">+82 2 3210 0404<small>서울 · 24시간</small></span></a>
+      <a href="https://www.google.com/maps/search/?api=1&query=Embassy%20of%20Korea%20Singapore%2047%20Scotts%20Road" target="_blank" rel="noopener"><span class="ico">📍</span><span class="lab">대사관 위치</span><span class="val">47 Scotts Road, #08-00<small>Goldbell Towers · 지도 열기</small></span></a>
+    </div>
+  </section>
+
+  <footer>
+    MANMIN Family Trip · Singapore 2026 · 최종 확정일 2026-08-08<br>
+    지도·영상·검색 버튼은 스마트폰에서 앱으로 바로 연결됩니다
+  </footer>
+</main>
+
+<!-- iOS 설치 안내 -->
+<div class="ov" id="iosOv">
+  <div class="sheet">
+    <h3>📲 아이폰 홈 화면에 추가</h3>
+    <p>1. 사파리 하단 <b>공유 버튼</b>(□↑)을 누릅니다.</p>
+    <p>2. 목록에서 <b>‘홈 화면에 추가’</b>를 선택합니다.</p>
+    <p>3. 우측 상단 <b>‘추가’</b>를 누르면 앱처럼 설치됩니다.</p>
+    <button class="close" id="iosClose">확인</button>
+  </div>
+</div>
+
+<script>
+// ===== 확정 일정 데이터 =====
+const DAYS=[
+ {dt:"Day 0 · 08-15(토)",tag:"이동 · 익산 → 인천 → 기내 1박",items:[
+   {t:"14:20",n:"익산 출발 (자택 → 터미널)",tr:"약 10~15분"},
+   {t:"14:35",n:"익산공용버스터미널 · 종이 승차권 발권",tr:"—"},
+   {t:"14:50",n:"공항버스 출발",tr:"승차홈10·좌석07 / 대야·군산·T1 경유"},
+   {t:"18:45",n:"인천공항 제2터미널(T2) 도착",tr:"—",q:"인천공항 제2여객터미널"},
+   {t:"19:00",n:"T2 저녁식사 · 체크인 준비",tr:"—"},
+   {t:"20:35",n:"KE647 체크인 · 수하물 위탁",tr:"출발 3시간 전 권장"},
+   {t:"21:40",n:"출국수속 · 보안검색",tr:"—"},
+   {t:"23:35",n:"ICN 출발 ✈ KE647 (기내 1박)",tr:"→ 창이 05:00",fly:true},
+ ]},
+ {dt:"Day 1 · 08-16(일)",tag:"도착 · 센트럴 / 마리나베이",items:[
+   {t:"05:00",n:"창이공항 T4 도착 · 입국심사",en:"Changi Airport T4",tr:"—",q:"Changi Airport Terminal 4 Singapore",fly:true},
+   {t:"06:00",n:"공항 아침식사 · 쥬얼 창이",en:"Jewel Changi Airport",tr:"공항 내 도보",q:"Jewel Changi Airport"},
+   {t:"06:40",n:"택시 이동 → 팬 퍼시픽",tr:"약 20분"},
+   {t:"07:00",n:"팬 퍼시픽 싱가포르 얼리체크인",en:"Pan Pacific Singapore",tr:"7 Raffles Blvd · +65 6336 8111",q:"Pan Pacific Singapore"},
+   {t:"10:00",n:"부기스 스트리트 (기념품)",en:"Bugis Street",tr:"—",q:"Bugis Street Singapore"},
+   {t:"11:00",n:"차임스 (유산 건물)",en:"CHIJMES",tr:"도보",q:"CHIJMES Singapore"},
+   {t:"11:30",n:"파운더 바쿠테 본점 · 점심",en:"Founder Bak Kut Teh",tr:"영업 09:30~21:30",q:"Founder Bak Kut Teh Singapore"},
+   {t:"12:30",n:"클락키 센트럴 (기념품)",en:"Clarke Quay Central",tr:"—",q:"Clarke Quay Central Singapore"},
+   {t:"14:00",n:"멀라이언 파크 (머라이언 상)",en:"Merlion Park",tr:"—",q:"Merlion Park Singapore"},
+   {t:"16:00",n:"마리나베이 · 아트사이언스 뮤지엄",en:"ArtScience Museum",tr:"도보",q:"ArtScience Museum Singapore"},
+   {t:"19:00",n:"가든스 바이 더 베이 · 슈퍼트리 야간쇼",en:"Gardens by the Bay",tr:"—",q:"Gardens by the Bay Supertree light show"},
+ ]},
+ {dt:"Day 2 · 08-17(월)",tag:"비보시티 · 쇼핑 (숙소 유지)",items:[
+   {t:"오전",n:"팬 퍼시픽에서 여유 · 휴식",tr:"체크아웃 없음(2박 동일 숙소)"},
+   {t:"점심",n:"블랙페퍼 크랩 · 식사",en:"Black Pepper Crab",tr:"칠리크랩보다 순함",q:"black pepper crab restaurant Singapore"},
+   {t:"오후",n:"비보시티 쇼핑",en:"VivoCity",tr:"—",q:"VivoCity Singapore"},
+   {t:"저녁",n:"야시장 · 라우파삿 등",en:"Lau Pa Sat",tr:"숙소 인근",q:"Lau Pa Sat Singapore"},
+ ]},
+ {dt:"Day 3 · 08-18(화)",tag:"체크아웃 · 자유일정 · 심야 창이 이동",items:[
+   {t:"오전",n:"팬 퍼시픽 체크아웃 · 짐보관",tr:"마지막 숙박(08-17)이므로 오늘 체크아웃"},
+   {t:"종일",n:"자유 관광",tr:"세부 일정 미정"},
+   {t:"옵션",n:"센토사 · S.E.A. 아쿠아리움",en:"S.E.A. Aquarium, Sentosa",tr:"리조트월드 센토사",q:"S.E.A. Aquarium Sentosa Singapore"},
+   {t:"심야",n:"창이공항 이동 (KE646 01:25 대비)",en:"Changi Airport",tr:"짐 찾아 이동",q:"Changi Airport Singapore"},
+ ]},
+ {dt:"Day 4 · 08-19(수)",tag:"귀국 · 싱가포르 → 인천 → 익산",items:[
+   {t:"08-18밤",n:"창이공항 이동 · 체크인·출국수속",tr:"—"},
+   {t:"01:25",n:"창이 출발 ✈ KE646",tr:"→ 인천 08:50",fly:true},
+   {t:"08:50",n:"인천공항 T2 도착 · 입국·수하물·세관",tr:"—"},
+   {t:"오전~오후",n:"인천공항 → 익산 이동",tr:"버스/KTX 선택 · 예매 필요"},
+ ]},
+];
+
+// Day0 / Day4 컨텍스트 HTML
+const TRANSPORT_HTML=`
+  <section class="blk"><h2>🚌 교통 확정 정보</h2>
+   <table>
+    <tr><td class="k">익산 출발</td><td>익산공용버스터미널 → (대야·군산·인천 T1) → <b>인천공항 T2</b><br><b>08-15(토) 14:50</b> · 약 3시간 55분 · 승차홈 <b>10</b>/좌석 <b>07</b> · 호남고속</td></tr>
+    <tr><td class="k">예매</td><td>예매 완료 (예매번호는 개인 보관) · <span class="todo">종이 승차권 발권 필요</span></td></tr>
+    <tr><td class="k">출국편</td><td><b>KE647</b> ICN T2 23:35 → 창이 T4 05:00 (A330-300)</td></tr>
+    <tr><td class="k">숙소</td><td>Pan Pacific Singapore · 7 Raffles Blvd · +65 6336 8111<br><b>2박 동일 숙소</b> (08-16·08-17 숙박, 08-18 체크아웃)</td></tr>
+   </table></section>`;
+const DEPART_CK=[
+  ["여권 잔여 유효기간 6개월 이상 확인 (4인)","d0a"],
+  ["SG Arrival Card 전자입국신고 (도착 3일 이내)","d0b"],
+  ["eSIM/유심 개통 · Grab 앱 설치·카드 등록","d0c"],
+  ["익산 버스 종이 승차권 발권 · 항공 웹체크인","d0d"],
+  ["G타입 어댑터 · 우산 · 얇은 겉옷 · 자외선 차단","d0e"],
+  ["상비약(소화제·지사제) · 향신료 대비 메모","d0f"],
+  ["호텔 8/16 얼리체크인 · 짐보관 요청","d0g"],
+  ["입장권 Klook/Traveloka 콤보 사전 구매","d0h"],
+];
+const RETURN_CK=[
+  ["기내 수하물 · 여권 · 보조배터리 재확인","d4a"],
+  ["면세품 한도 확인 (미화 800불·주류 1L·담배)","d4b"],
+  ["호텔 체크아웃(08-18) · 유실물 점검","d4c"],
+  ["창이 GST 환급(Tourego/eTRS) 처리","d4d"],
+  ["인천→익산 버스/KTX 예매 완료","d4e"],
+  ["로밍/eSIM 국내 전환 · 데이터 확인","d4f"],
+];
+function ckHtml(title,arr){
+  return `<section class="blk"><h2>✅ ${title} <span style="font-size:11px;color:var(--sub);font-weight:600;">(탭하면 체크·저장)</span></h2>
+    <ul class="cklist">`+arr.map(([t,k])=>`<li data-key="ck_${k}"><span class="bx">✓</span><span class="t">${t}</span></li>`).join('')+`</ul></section>`;
+}
+const MBTI_HTML=`
+  <section class="blk"><h2>🧭 MBTI 맞춤 배려</h2>
+   <div class="mbti">
+    <div class="m"><div class="h">아빠 · ENTP</div><div class="b">다양성·새로움. 부기스·클락키·현지 시장 탐방, 여백 있는 일정.</div></div>
+    <div class="m"><div class="h">딸 · INTJ</div><div class="b">깊이·완성도. 아트사이언스·가든스 온실 심층 관람, 한산한 시간대.</div></div>
+    <div class="m"><div class="h">아들 · ESTJ</div><div class="b">명확한 동선·랜드마크. 멀라이언·마리나베이·비보시티 위주.</div></div>
+    <div class="m"><div class="h">아내 · ISFP</div><div class="b">감각·여유. 가든스 야경·야시장, 강행군 지양, 향신료 배려.</div></div>
+   </div></section>`;
+const ARRIVAL_CARD_BTN=`
+  <section class="blk"><h2>🛂 출입국카드 · 사전 작성</h2>
+   <div class="acts">
+    <a class="act blue" href="https://eservices.ica.gov.sg/sgarrivalcard/" target="_blank" rel="noopener"><span class="ico">🇸🇬</span><span>SG Arrival Card 작성 (ICA)<small>싱가포르 입국 전 필수 · 도착 3일 이내 온라인 제출</small></span></a>
+   </div>
+   <div class="note">08-16 도착이므로 <b>08-13 이후</b> 제출 가능합니다. 가족 4인 각각 제출하세요.</div>
+  </section>`;
+const IMMI_BTN=`
+  <section class="blk"><h2>🛂 귀국 출입국 · 세관</h2>
+   <div class="acts">
+    <a class="act red" href="https://www.google.com/search?q=%EA%B4%80%EC%84%B8%EC%B2%AD+%EC%97%AC%ED%96%89%EC%9E%90+%ED%9C%B4%EB%8C%80%ED%92%88+%EB%AA%A8%EB%B0%94%EC%9D%BC+%EC%84%B8%EA%B4%80%EC%8B%A0%EA%B3%A0" target="_blank" rel="noopener"><span class="ico">🇰🇷</span><span>한국 입국 세관신고 (모바일)<small>면세 초과 시 자진신고 · 관세청 여행자 휴대품</small></span></a>
+    <a class="act blue" href="https://eservices.ica.gov.sg/sgarrivalcard/" target="_blank" rel="noopener"><span class="ico">🇸🇬</span><span>SG Arrival Card 확인<small>재입국·경유 시 재작성 필요 여부 확인</small></span></a>
+   </div>
+  </section>`;
+
+const FX_HTML=`
+  <section class="blk"><h2>💱 환율 계산기 (SGD ↔ KRW)</h2>
+   <button class="fxtoggle" id="fxToggle" type="button">환율 계산기 열기 ▾</button>
+   <div class="fxbody" id="fxBody" hidden>
+    <div class="fx">
+      <div class="fxrow"><label>SGD</label><input id="fxSgd" type="number" inputmode="decimal" placeholder="0" value="100"></div>
+      <div class="swapline">▲ 싱가포르 달러 · 원화 ▼ (실시간 아님·수동 환율)</div>
+      <div class="fxrow"><label>KRW</label><input id="fxKrw" type="number" inputmode="decimal" placeholder="0"></div>
+      <div class="fxrate">적용 환율 1 SGD = <input id="fxRate" type="number" inputmode="decimal" value="1180"> 원</div>
+    </div>
+    <div class="note"><span id="fxStatus">환율 불러오는 중…</span> · 자동 조회 실패 시 수동 입력값을 사용합니다. (값은 기기에 저장됩니다)</div>
+   </div></section>`;
+
+let curDay=0;
+const mapUrl=q=>"https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(q);
+const ytUrl =q=>"https://www.youtube.com/results?search_query="+encodeURIComponent(q+" 싱가포르 여행")+"&sp=CAMSAhAB";
+const seUrl =q=>"https://www.google.com/search?q="+encodeURIComponent(q+" 싱가포르");
+
+function renderDays(){
+  document.getElementById('days').innerHTML=DAYS.map((d,i)=>{
+    const [big,small]=d.dt.split(" · ");
+    return `<button class="day-btn ${i===curDay?'active':''}" type="button" data-d="${i}">${big}<small>${small||''}</small></button>`;
+  }).join('');
+}
+function renderTimeline(){
+  const d=DAYS[curDay];
+  document.getElementById('dayTitle').textContent=d.dt;
+  document.getElementById('dayTag').textContent=d.tag;
+  document.getElementById('timeline').innerHTML=d.items.map(it=>{
+    const en=it.en?`<span class="en">${it.en}</span>`:"";
+    const tr=it.tr&&it.tr!=="—"?`<div class="info"><span class="k">이동/메모</span> ${it.tr}</div>`:"";
+    let links="";
+    if(it.q){links=`<div class="links">
+      <a class="lnk map" href="${mapUrl(it.q)}" target="_blank" rel="noopener">📍 지도</a>
+      <a class="lnk yt" href="${ytUrl(it.q)}" target="_blank" rel="noopener">▶ 영상</a>
+      <a class="lnk se" href="${seUrl(it.q)}" target="_blank" rel="noopener">🔍 검색</a></div>`;}
+    return `<div class="item ${it.fly?'fly':''}"><div class="card">
+      <div class="row1"><span class="time">${it.t}</span><span class="title">${it.n}${en}</span></div>
+      ${tr}${links}</div></div>`;
+  }).join('');
+}
+function renderExtras(){
+  const el=document.getElementById('dayExtras');
+  if(curDay===0)      el.innerHTML=TRANSPORT_HTML + ckHtml("출발 전 준비 체크리스트",DEPART_CK) + ARRIVAL_CARD_BTN + MBTI_HTML;
+  else if(curDay===4) el.innerHTML=ckHtml("귀국 체크리스트",RETURN_CK) + IMMI_BTN + FX_HTML;
+  else                el.innerHTML="";
+  el.querySelectorAll('.cklist li').forEach(li=>{
+    try{ if(localStorage.getItem(li.dataset.key)==='1') li.classList.add('done'); }catch(e){}
+  });
+  if(curDay===4) initFx();
+}
+
+// 환율 계산기 (Day4에서 렌더될 때마다 초기화)
+function initFx(){
+  const toggle=document.getElementById('fxToggle'), body=document.getElementById('fxBody');
+  const sgd=document.getElementById('fxSgd'), krw=document.getElementById('fxKrw'), rate=document.getElementById('fxRate');
+  if(!toggle||!body||!sgd) return;
+  toggle.addEventListener('click',()=>{
+    const open=body.hasAttribute('hidden');
+    if(open){body.removeAttribute('hidden');toggle.classList.add('on');toggle.textContent='환율 계산기 닫기 ▴';}
+    else{body.setAttribute('hidden','');toggle.classList.remove('on');toggle.textContent='환율 계산기 열기 ▾';}
+  });
+  try{ const r=localStorage.getItem('fxRate'); if(r) rate.value=r; }catch(e){}
+  const fmt=n=>isFinite(n)?Math.round(n).toLocaleString('ko-KR'):"";
+  function fromSgd(){ const r=parseFloat(rate.value)||0, v=parseFloat(sgd.value); krw.value=isFinite(v)?fmt(v*r):""; }
+  function fromKrw(){ const r=parseFloat(rate.value)||1, v=parseFloat(String(krw.value).replace(/,/g,'')); sgd.value=isFinite(v)?(v/r).toFixed(2):""; }
+  sgd.addEventListener('input',fromSgd);
+  krw.addEventListener('input',fromKrw);
+  rate.addEventListener('input',()=>{ try{localStorage.setItem('fxRate',rate.value);}catch(e){} fromSgd(); });
+  fromSgd();
+  // 실시간 환율 자동 조회 (무료 API · 실패 시 수동값 유지)
+  const st=document.getElementById('fxStatus');
+  fetch('https://open.er-api.com/v6/latest/SGD').then(r=>r.json()).then(d=>{
+    if(d&&d.rates&&d.rates.KRW){
+      rate.value=Math.round(d.rates.KRW);
+      try{localStorage.setItem('fxRate',rate.value);}catch(e){}
+      fromSgd();
+      const upd=d.time_last_update_utc?d.time_last_update_utc.slice(5,16):"";
+      if(st) st.textContent='실시간 환율 적용됨'+(upd?' ('+upd+' UTC 기준)':'');
+    } else if(st){ st.textContent='실시간 조회 실패 · 수동값 사용'; }
+  }).catch(()=>{ if(st) st.textContent='실시간 조회 실패 · 수동값 사용'; });
+}
+
+// ===== 모바일 탭(터치+클릭) =====
+let lastTouch=0;
+function bindTap(container,selector,handler){
+  let sx=0,sy=0,moved=false;
+  container.addEventListener('touchstart',e=>{const t=e.changedTouches[0];sx=t.clientX;sy=t.clientY;moved=false;},{passive:true});
+  container.addEventListener('touchmove',e=>{const t=e.changedTouches[0];if(Math.abs(t.clientX-sx)>10||Math.abs(t.clientY-sy)>10)moved=true;},{passive:true});
+  container.addEventListener('touchend',e=>{if(moved)return;const el=e.target.closest(selector);if(!el)return;lastTouch=Date.now();e.preventDefault();handler(el);});
+  container.addEventListener('click',e=>{if(Date.now()-lastTouch<700)return;const el=e.target.closest(selector);if(!el)return;handler(el);});
+}
+bindTap(document.getElementById('days'),'.day-btn',b=>{curDay=+b.dataset.d;renderTimeline();renderDays();renderExtras();});
+// 체크리스트(컨텍스트) — 링크(a) 탭은 제외
+bindTap(document.getElementById('dayExtras'),'.cklist li',li=>{
+  li.classList.toggle('done');
+  try{localStorage.setItem(li.dataset.key, li.classList.contains('done')?'1':'0');}catch(e){}
+});
+
+// ===== PWA 설치 =====
+if('serviceWorker' in navigator){ window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{})); }
+const installBtn=document.getElementById('installBtn');
+const iosOv=document.getElementById('iosOv');
+let deferred=null;
+const isIOS=/iphone|ipad|ipod/i.test(navigator.userAgent);
+const standalone=window.matchMedia('(display-mode: standalone)').matches||navigator.standalone===true;
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferred=e;installBtn.style.display='inline-flex';});
+if(isIOS && !standalone) installBtn.style.display='inline-flex';
+installBtn.addEventListener('click',async()=>{
+  if(deferred){ deferred.prompt(); await deferred.userChoice; deferred=null; installBtn.style.display='none'; return; }
+  iosOv.classList.add('on');
+});
+document.getElementById('iosClose').addEventListener('click',()=>iosOv.classList.remove('on'));
+iosOv.addEventListener('click',e=>{ if(e.target===iosOv) iosOv.classList.remove('on'); });
+
+// ===== D-day + 싱가포르 현지 시각 =====
+(function(){
+  const ddayEl=document.getElementById('dday'), clockEl=document.getElementById('sgclock');
+  const dep=new Date('2026-08-15T00:00:00+09:00'), end=new Date('2026-08-19T23:59:59+09:00');
+  function tick(){
+    const now=new Date();
+    // D-day (한국 날짜 기준)
+    const d0=new Date(dep.getFullYear(),dep.getMonth(),dep.getDate());
+    const t0=new Date(now.getFullYear(),now.getMonth(),now.getDate());
+    const diff=Math.round((d0-t0)/86400000);
+    if(now>end) ddayEl.textContent='여행 종료';
+    else if(now>=dep) ddayEl.textContent='✈ 여행 중';
+    else ddayEl.textContent='출발 D-'+diff;
+    // 싱가포르 현지 시각
+    try{ clockEl.textContent='🇸🇬 '+now.toLocaleTimeString('ko-KR',{timeZone:'Asia/Singapore',hour12:false}); }
+    catch(e){ clockEl.textContent='🇸🇬 '+now.toLocaleTimeString('ko-KR'); }
+  }
+  tick(); setInterval(tick,1000);
+})();
+
+renderDays();renderTimeline();renderExtras();
+</script>
+</body>
+</html>
