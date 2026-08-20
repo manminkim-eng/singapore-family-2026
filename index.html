@@ -4,18 +4,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="theme-color" content="#123a63">
-<title>MANMIN Family Trip · Singapore 2026</title>
+<title>싱가포르 4박 가족여행 일정표 · MANMIN</title>
+<meta name="description" content="건축사 김만민의 싱가포르 4박 가족여행 실제 동선 일정표. 마리나베이·가든스 바이 더 베이·비보시티·시빅 디스트릭트 코스와 환율 계산기, 대사관 비상연락망, 준비물 체크리스트.">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="icon-192.png">
 <link rel="manifest" href="manifest.json">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="SG 2026">
+<meta name="apple-mobile-web-app-title" content="SG 일정표">
 
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
 <style>
-  /* ===== 사용자 폰트("73") 자리 — fonts/ 폴더에 파일 업로드 후 확정 ===== */
   @font-face{
     font-family:"ManminFont";
     src:url("fonts/manmin.woff2") format("woff2"),
@@ -46,17 +46,13 @@
   .hbtn{display:inline-flex;align-items:center;gap:5px;color:#fff;text-decoration:none;cursor:pointer;
     font-size:11.5px;font-weight:700;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.34);
     padding:6px 10px;border-radius:999px;}
-  .hbtn svg{width:15px;height:15px;fill:#fff;}
   #installBtn{display:none;background:#ffe08a;color:#5a3d00;border-color:#ffe08a;}
   h1{margin:7px 0 3px;font-size:22px;font-weight:800;letter-spacing:-.4px;}
   .subttl{font-size:12.5px;opacity:.95;}
-  .ticker{display:flex;gap:8px;margin-top:8px;}
+  .ticker{display:flex;gap:8px;margin-top:8px;flex-wrap:wrap;}
   .ticker span{font-size:12px;font-weight:800;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.3);
     padding:5px 10px;border-radius:999px;font-variant-numeric:tabular-nums;}
-  #dday{color:#ffe08a;}
-  .meta{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;}
-  .chip{font-size:11.5px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.28);padding:4px 9px;border-radius:999px;white-space:nowrap;}
-  .chip b{color:#ffe08a;}
+  #sgclock{color:#ffe08a;}
   .days{display:flex;gap:7px;overflow-x:auto;padding:11px 0 2px;scrollbar-width:none;}
   .days::-webkit-scrollbar{display:none;}
   .day-btn{flex:0 0 auto;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.1);color:#eaf0fb;
@@ -76,6 +72,7 @@
   .item::before{content:"";position:absolute;left:-17px;top:16px;width:11px;height:11px;border-radius:50%;
     background:var(--navy2);border:2px solid var(--bg);box-shadow:0 0 0 2px var(--navy2);}
   .item.fly::before{background:var(--red);box-shadow:0 0 0 2px var(--red);}
+  .item.arch::before{background:var(--gold);box-shadow:0 0 0 2px var(--gold);}
   .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:12px 13px;box-shadow:0 2px 6px rgba(0,0,0,.03);}
   .row1{display:flex;align-items:center;gap:9px;}
   .time{font-size:13px;font-weight:800;color:var(--navy2);font-variant-numeric:tabular-nums;white-space:nowrap;}
@@ -83,7 +80,6 @@
   .en{display:block;font-size:11px;color:var(--sub);font-weight:500;margin-top:1px;}
   .info{font-size:12px;color:var(--sub);margin-top:5px;}
   .info .k{color:#93a1b3;}
-  .todo{color:var(--red);font-weight:700;}
   .links{display:flex;gap:6px;margin-top:9px;}
   .lnk{flex:1;text-align:center;text-decoration:none;font-size:11.5px;font-weight:700;padding:8px 3px;border-radius:10px;border:1px solid var(--line);transition:.15s;}
   .lnk.map{background:rgba(29,91,143,.1);color:var(--navy2);border-color:rgba(29,91,143,.3);}
@@ -99,10 +95,6 @@
   td.k{white-space:nowrap;font-weight:700;color:var(--navy2);width:88px;}
   .warn{background:#fff4f2;border-left:4px solid var(--red);padding:9px 12px;border-radius:6px;font-size:12.5px;color:#7a2b20;margin:4px 0;}
   .note{background:#f0f6ff;border-left:4px solid var(--navy2);padding:9px 12px;border-radius:6px;font-size:12.5px;color:var(--sub);margin:8px 0 0;}
-  .mbti{display:grid;gap:8px;}
-  .mbti .m{background:var(--chip);border:1px solid var(--line);border-radius:12px;padding:10px 12px;}
-  .mbti .m .h{font-size:13px;font-weight:800;color:var(--navy);}
-  .mbti .m .b{font-size:12px;color:var(--sub);margin-top:3px;}
 
   .cklist{list-style:none;padding:0;margin:0;display:grid;gap:8px;}
   .cklist li{display:flex;gap:10px;align-items:flex-start;background:var(--chip);border:1px solid var(--line);border-radius:11px;
@@ -113,13 +105,21 @@
   .cklist li.done .t{text-decoration:line-through;}
   .cklist li b{color:var(--navy);}
 
-  /* action buttons (출입국카드 등) */
   .acts{display:grid;gap:8px;margin-top:10px;}
   .act{display:flex;align-items:center;gap:10px;text-decoration:none;background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px;color:var(--ink);font-size:13px;font-weight:700;}
   .act .ico{font-size:18px;}
   .act small{display:block;font-weight:500;color:var(--sub);font-size:11px;margin-top:1px;}
   .act.blue{border-color:rgba(29,91,143,.35);background:rgba(29,91,143,.06);}
-  .act.red{border-color:rgba(192,57,43,.3);background:rgba(192,57,43,.05);}
+  .act.gold{border-color:rgba(184,134,11,.35);background:rgba(184,134,11,.07);}
+
+  /* 시리즈 허브 */
+  .series{display:grid;gap:8px;}
+  .series a{display:flex;gap:10px;align-items:flex-start;text-decoration:none;background:#fff;border:1px solid var(--line);
+    border-radius:12px;padding:11px 12px;color:var(--ink);}
+  .series .no{flex:0 0 34px;font-size:11px;font-weight:800;color:#fff;background:var(--navy2);border-radius:7px;
+    text-align:center;padding:3px 0;margin-top:1px;}
+  .series .tx{font-size:13px;font-weight:700;line-height:1.45;}
+  .series .tx small{display:block;font-weight:500;color:var(--sub);font-size:11.5px;margin-top:2px;}
 
   /* 환율 계산기 */
   .fx{display:grid;gap:10px;}
@@ -131,11 +131,6 @@
   .fxrate{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--sub);}
   .fxrate input{width:92px;text-align:right;padding:6px 8px;border:1px solid var(--line);border-radius:8px;font-weight:700;}
   .swapline{text-align:center;color:var(--navy2);font-size:12px;font-weight:700;}
-  .fxtoggle{width:100%;padding:12px;border:1px solid rgba(184,134,11,.4);background:rgba(184,134,11,.08);
-    color:var(--gold);font-weight:800;font-size:14px;border-radius:12px;cursor:pointer;}
-  .fxtoggle.on{background:var(--gold);color:#fff;border-color:var(--gold);}
-  .fxbody{margin-top:12px;}
-  .fxbody[hidden]{display:none;}
 
   .embassy{background:linear-gradient(160deg,#fff6f4,#fff);border:1px solid #f0cfc9;}
   .embassy h2{border-left-color:var(--red);color:#a5342a;}
@@ -148,8 +143,8 @@
   .emg .val small{display:block;font-weight:500;color:var(--sub);font-size:11px;}
 
   footer{text-align:center;color:var(--sub);font-size:11px;margin:20px 0 4px;line-height:1.7;}
+  footer b{color:var(--navy);}
 
-  /* iOS 설치 안내 오버레이 */
   .ov{position:fixed;inset:0;z-index:60;background:rgba(15,25,40,.55);display:none;align-items:flex-end;}
   .ov.on{display:flex;}
   .sheet{background:#fff;width:100%;max-width:720px;margin:0 auto;border-radius:18px 18px 0 0;padding:18px 18px calc(20px + var(--safeB));}
@@ -163,19 +158,15 @@
 <header>
   <div class="inner">
     <div class="brand">
-      <span class="eyebrow">MANMIN FAMILY TRIP</span>
+      <span class="eyebrow">MANMIN TRAVEL GUIDE</span>
       <div class="hbtns">
         <span class="hbtn" id="fxBtn">💱 환율</span>
         <span class="hbtn" id="installBtn">⬇ 설치</span>
       </div>
     </div>
-    <h1>가족 싱가포르 여행 2026 🇸🇬</h1>
-    <div class="subttl">최종 확정 일정 · 2026-08-15(토) ~ 08-19(수) · 4인 (기내 1박)</div>
-    <div class="ticker"><span id="dday">D-…</span><span id="sgclock">🇸🇬 --:--:--</span></div>
-    <div class="meta">
-      <span class="chip">✈ <b>KE647</b> 23:35 → 창이 05:00</span>
-      <span class="chip">🛬 <b>KE646</b> 08-19 01:25 → 08:50</span>
-    </div>
+    <h1>싱가포르 4박 가족여행 일정표 🇸🇬</h1>
+    <div class="subttl">건축사 김만민이 실제로 걸은 동선 · 2026-08-15 ~ 08-19 · 4인 (기내 1박)</div>
+    <div class="ticker"><span id="sgclock">🇸🇬 --:--:--</span><span>실제 답사 기록</span></div>
     <div class="days" id="days"></div>
   </div>
 </header>
@@ -184,13 +175,41 @@
   <div class="day-head"><div class="dt" id="dayTitle"></div><div class="tag" id="dayTag"></div></div>
   <div class="tl" id="timeline"></div>
 
-  <!-- Day별 컨텍스트 섹션 (Day0: 교통·출발체크리스트 / Day4: 귀국체크리스트·출입국카드) -->
   <div id="dayExtras"></div>
+
+  <!-- 시리즈 허브 -->
+  <section class="blk">
+    <h2>📖 MANMIN 여행기 · 싱가포르 5부작</h2>
+    <div class="series">
+      <a href="https://blog.naver.com/manmin72" target="_blank" rel="noopener"><span class="no">1부</span><span class="tx">인천공항 T2 · 창이공항 T4 · 팬퍼시픽<small>봉황의 지붕과 300m 갤러리아, 38층을 비운 호텔</small></span></a>
+      <a href="https://blog.naver.com/manmin72" target="_blank" rel="noopener"><span class="no">2부</span><span class="tx">마리나베이샌즈 · 더숍스 · 아트사이언스 뮤지엄<small>66.5m 캔틸레버와 35m를 떨어지는 빗물</small></span></a>
+      <a href="https://blog.naver.com/manmin72" target="_blank" rel="noopener"><span class="no">3부</span><span class="tx">가든스 바이 더 베이<small>플라워 돔 · 클라우드 포레스트 · 슈퍼트리</small></span></a>
+      <a href="https://blog.naver.com/manmin72" target="_blank" rel="noopener"><span class="no">4부</span><span class="tx">선텍시티 · 비보시티 · 라우파삿<small>부의 분수와 1894년 주철 시장</small></span></a>
+      <a href="https://blog.naver.com/manmin72" target="_blank" rel="noopener"><span class="no">5부</span><span class="tx">시빅 디스트릭트 도보 답사<small>차임스 · 중앙소방서 · 옛 힐스트리트 경찰서 · 클락키</small></span></a>
+    </div>
+    <div class="note">각 편은 네이버 블로그 <b>manmin72</b>에 순차 게재됩니다. 버튼을 누르면 블로그로 이동합니다.</div>
+  </section>
+
+  <!-- 준비물 체크리스트 (범용) -->
+  <section class="blk">
+    <h2>✅ 준비물 체크리스트 <span style="font-size:11px;color:var(--sub);font-weight:600;">(탭하면 체크·저장)</span></h2>
+    <ul class="cklist" id="ckPrep"></ul>
+    <div class="note">체크 상태는 <b>이 기기에만</b> 저장됩니다. 서버로 전송되지 않습니다.</div>
+  </section>
+
+  <!-- 입국 준비 -->
+  <section class="blk">
+    <h2>🛂 SG Arrival Card (입국카드)</h2>
+    <div class="acts">
+      <a class="act blue" href="https://eservices.ica.gov.sg/sgarrivalcard/" target="_blank" rel="noopener"><span class="ico">🇸🇬</span><span>SG Arrival Card 작성 (ICA 공식)<small>싱가포르 입국 전 필수 · 온라인 제출</small></span></a>
+    </div>
+    <div class="note">제출 가능 기간은 <b>도착일 포함 3일</b>입니다. 승인 메일을 각자 휴대폰에 저장해 두시고, 항공편 지연으로 <b>도착일이 바뀌면 재제출</b>해야 합니다. 최신 제도는 ICA 공식 페이지에서 확인하세요.</div>
+  </section>
 
   <!-- 음식 -->
   <section class="blk">
-    <h2>🍽 음식 메모 (아내 ISFP · 향신료 약함)</h2>
-    <div class="warn"><b>순한 메뉴 우선:</b> 하이난 치킨라이스, 딤섬, 로스트미트, 바쿠테(후추 국물), 블랙페퍼 크랩. <b>주의:</b> 락사·커리·칠리크랩 등 매운 향신료 요리. 주문 시 <b>“no chili / less spicy / no coriander”</b>.</div>
+    <h2>🍽 향신료가 부담스러울 때 (음식 가이드)</h2>
+    <div class="warn"><b>순한 메뉴:</b> 하이난 치킨라이스, 딤섬, 로스트미트, 바쿠테(후추 국물), 블랙페퍼 크랩.<br><b>강한 편:</b> 락사 · 커리 · 칠리크랩.<br>주문할 때 <b>“no chili / less spicy / no coriander”</b> 한마디면 대부분 조정해 줍니다.</div>
   </section>
 
   <!-- 현지 팁 -->
@@ -198,10 +217,11 @@
     <h2>🧳 현지 팁 (싱가포르)</h2>
     <table>
       <tr><td class="k">8월 날씨</td><td>고온다습(28~32℃)·오후 스콜 잦음 → 우산·실내 위주, 실내 <b>강냉방</b> 대비 얇은 겉옷</td></tr>
-      <tr><td class="k">교통 결제</td><td>MRT·버스는 <b>애플페이 등 컨택리스 카드</b>로 바로 태그(자녀 아이폰 애플페이 가능) · 이동은 <b>Grab</b> 앱</td></tr>
-      <tr><td class="k">벌금 주의</td><td>지하철 내 <b>음식·음료 금지</b>, 껌 반입 주의, 지정구역 외 <b>금연</b>, 무단횡단 금지 (벌금 도시)</td></tr>
+      <tr><td class="k">교통 결제</td><td>MRT·버스는 <b>컨택리스 카드</b>(애플페이 등)로 바로 태그 · 차량 이동은 <b>Grab</b> 앱</td></tr>
+      <tr><td class="k">벌금 주의</td><td>지하철 내 <b>음식·음료 금지</b>, 껌 반입 주의, 지정구역 외 <b>금연</b>, 무단횡단 금지</td></tr>
       <tr><td class="k">전압·물</td><td>230V <b>G타입 3핀</b> 어댑터 · 수돗물 음용 가능</td></tr>
       <tr><td class="k">팁 문화</td><td>대부분 서비스차지 10% 포함 → <b>별도 팁 불필요</b></td></tr>
+      <tr><td class="k">세금 환급</td><td>출국 시 창이공항에서 <b>eTRS</b> 키오스크로 GST 환급 신청</td></tr>
     </table>
   </section>
 
@@ -217,10 +237,23 @@
       <a href="tel:+82232100404"><span class="ico">📞</span><span class="lab">영사콜센터</span><span class="val">+82 2 3210 0404<small>서울 · 24시간</small></span></a>
       <a href="https://www.google.com/maps/search/?api=1&query=Embassy%20of%20Korea%20Singapore%2047%20Scotts%20Road" target="_blank" rel="noopener"><span class="ico">📍</span><span class="lab">대사관 위치</span><span class="val">47 Scotts Road, #08-00<small>Goldbell Towers · 지도 열기</small></span></a>
     </div>
+    <div class="note">연락처·운영시간은 변동될 수 있습니다. 출국 전 대사관 공식 홈페이지에서 다시 확인하세요.</div>
+  </section>
+
+  <!-- 채널 -->
+  <section class="blk">
+    <h2>🙌 함께 보기</h2>
+    <div class="acts">
+      <a class="act blue" href="https://blog.naver.com/manmin72" target="_blank" rel="noopener"><span class="ico">✍️</span><span>네이버 블로그<small>MANMIN 답사기 · 여행기</small></span></a>
+      <a class="act red" href="https://www.youtube.com/@김만민-x8p" target="_blank" rel="noopener" style="border-color:rgba(192,57,43,.3);background:rgba(192,57,43,.05);"><span class="ico">🎥</span><span>유튜브 「건축사가 걷는 백제」<small>답사 영상</small></span></a>
+      <a class="act gold" href="https://manminkim-eng.github.io/KIMMANMIN/" target="_blank" rel="noopener"><span class="ico">🧮</span><span>MANMIN 엔지니어링 계산 도구<small>건축·구조·기계설비·소방·토목 · 무료</small></span></a>
+    </div>
   </section>
 
   <footer>
-    MANMIN Family Trip · Singapore 2026 · 최종 확정일 2026-08-08 · 최종 수정 2026-08-14<br>
+    <b>김만민</b> · ㈜대성건축사사무소 이사 · 건축사(#20072) · 국제공인 가치공학 전문가(CVS·VMP)<br>
+    싱가포르 4박 가족여행 일정표 · 2026-08 답사 기준 · 최종 수정 2026-08-20<br>
+    운영시간·요금·터미널 정보는 변동됩니다. 방문 전 공식 홈페이지에서 확인하세요.<br>
     지도·영상·검색 버튼은 스마트폰에서 앱으로 바로 연결됩니다
   </footer>
 </main>
@@ -252,104 +285,80 @@
 </div>
 
 <script>
-// ===== 확정 일정 데이터 =====
+// ===== 실제 동선 데이터 (2026-08 답사 기록 기준) =====
 const DAYS=[
- {dt:"Day 0 · 08-15(토)",tag:"이동 · 익산 → 인천 → 기내 1박",items:[
-   {t:"14:20",n:"익산 출발 (자택 → 터미널)",tr:"약 10~15분"},
-   {t:"14:35",n:"익산공용버스터미널 · 종이 승차권 발권",tr:"—"},
-   {t:"14:50",n:"공항버스 출발",tr:"승차홈10·좌석07 / 대야·군산·T1 경유"},
-   {t:"18:45",n:"인천공항 제2터미널(T2) 도착",tr:"—",q:"인천공항 제2여객터미널"},
-   {t:"19:00",n:"T2 저녁식사 · 체크인 준비",tr:"—"},
-   {t:"20:35",n:"KE647 체크인 · 수하물 위탁",tr:"출발 3시간 전 권장"},
-   {t:"21:40",n:"출국수속 · 보안검색",tr:"—"},
-   {t:"23:35",n:"ICN 출발 ✈ KE647 (기내 1박)",tr:"→ 창이 05:00",fly:true},
+ {dt:"Day 0 · 08-15(토)",tag:"익산 → 인천공항 → 기내 1박",items:[
+   {t:"14:50",n:"익산공용버스터미널 → 인천공항 공항버스",tr:"약 3시간 55분 · 대야·군산·인천 T1 경유"},
+   {t:"18:57",n:"인천공항 제2여객터미널(T2) 도착",en:"Incheon Airport T2",tr:"2018년 개항 · 봉황 모티브 · 대공간 99m",q:"인천공항 제2여객터미널"},
+   {t:"19:08",n:"3층 출국장 체크인 · 수하물 위탁",tr:"출발 3시간 전 권장"},
+   {t:"21:15",n:"T2 그레이트홀 · 격자 셸 천창",tr:"면세지역 · 전통 목구조 설치물",q:"인천공항 T2 그레이트홀"},
+   {t:"23:35",n:"인천 출발 ✈ 싱가포르행 (기내 1박)",tr:"비행 약 6시간 25분",fly:true},
  ]},
- {dt:"Day 1 · 08-16(일)",tag:"도착 · 센트럴 / 마리나베이",items:[
-   {t:"05:00",n:"창이공항 T4 도착 · 입국심사",en:"Changi Airport T4",tr:"—",q:"Changi Airport Terminal 4 Singapore",fly:true},
-   {t:"06:00",n:"공항 아침식사 · 쥬얼 창이",en:"Jewel Changi Airport",tr:"공항 내 도보",q:"Jewel Changi Airport"},
-   {t:"06:40",n:"택시 이동 → 팬 퍼시픽",tr:"약 20분"},
-   {t:"07:00",n:"팬 퍼시픽 싱가포르 얼리체크인",en:"Pan Pacific Singapore",tr:"7 Raffles Blvd · +65 6336 8111",q:"Pan Pacific Singapore"},
-   {t:"10:00",n:"부기스 스트리트 (기념품)",en:"Bugis Street",tr:"—",q:"Bugis Street Singapore"},
-   {t:"11:00",n:"차임스 (유산 건물)",en:"CHIJMES",tr:"도보",q:"CHIJMES Singapore"},
-   {t:"11:30",n:"파운더 바쿠테 본점 · 점심",en:"Founder Bak Kut Teh",tr:"영업 09:30~21:30",q:"Founder Bak Kut Teh Singapore"},
-   {t:"12:30",n:"클락키 센트럴 (기념품)",en:"Clarke Quay Central",tr:"—",q:"Clarke Quay Central Singapore"},
-   {t:"14:00",n:"멀라이언 파크 (머라이언 상)",en:"Merlion Park",tr:"—",q:"Merlion Park Singapore"},
-   {t:"16:00",n:"마리나베이 · 아트사이언스 뮤지엄",en:"ArtScience Museum",tr:"도보",q:"ArtScience Museum Singapore"},
-   {t:"19:00",n:"가든스 바이 더 베이 · 슈퍼트리 야간쇼",en:"Gardens by the Bay",tr:"—",q:"Gardens by the Bay Supertree light show"},
+ {dt:"Day 1 · 08-16(일)",tag:"도착 · 마리나베이 · 가든스",items:[
+   {t:"05:00",n:"창이공항 제4터미널 도착 · 입국심사",en:"Changi Airport T4",tr:"2017년 개장 · SAA + Benoy · 300m 센트럴 갤러리아",q:"Changi Airport Terminal 4 Singapore",fly:true},
+   {t:"07:00",n:"마리나 스퀘어 숙소 얼리체크인",tr:"새벽 도착 시 사전 요청 권장",q:"Marina Square Singapore"},
+   {t:"11:00",n:"마리나베이 북안 프롬나드 산책",tr:"에스플러네이드·CBD 스카이라인 조망",q:"Esplanade Singapore"},
+   {t:"12:35",n:"마리나베이샌즈 · 더 숍스",en:"Marina Bay Sands",tr:"2010년 · 모셰 사프디 · 스카이파크 캔틸레버 66.5m",q:"Marina Bay Sands Singapore",arch:true},
+   {t:"12:43",n:"레인 오큘러스 · 실내 운하 삼판",en:"Rain Oculus",tr:"지름 약 21m 아크릴 보울 · 빗물 순환",q:"Rain Oculus Marina Bay Sands",arch:true},
+   {t:"14:27",n:"베이프론트 수변 · 루이비통 아일랜드 메종",en:"Louis Vuitton Island Maison",tr:"수상 유리 파빌리온",q:"Louis Vuitton Island Maison Singapore"},
+   {t:"14:38",n:"아트사이언스 뮤지엄 (외관·로비)",en:"ArtScience Museum",tr:"2011년 · 사프디 · 꽃잎 10장 · 중앙 낙수 35m",q:"ArtScience Museum Singapore",arch:true},
+   {t:"15:35",n:"가든스 바이 더 베이 진입",en:"Gardens by the Bay",tr:"슈퍼트리 그로브 · OCBC 스카이웨이 조망",q:"Gardens by the Bay Singapore"},
+   {t:"15:47",n:"플로럴 판타지",en:"Floral Fantasy",tr:"실내 · 약 30분 소요 · 10:00~19:00",q:"Floral Fantasy Gardens by the Bay"},
+   {t:"16:20",n:"플라워 돔",en:"Flower Dome",tr:"무주 그리드셸 대공간 · 냉방 온실",q:"Flower Dome Gardens by the Bay",arch:true},
+   {t:"17:25",n:"클라우드 포레스트 · 클라우드워크",en:"Cloud Forest",tr:"35m 인공산·폭포 · 공중보행교",q:"Cloud Forest Gardens by the Bay",arch:true},
+   {t:"19:00",n:"슈퍼트리 그로브 야간 점등",en:"Supertree Grove",tr:"야외 정원 05:00~02:00",q:"Supertree Grove light show"},
  ]},
- {dt:"Day 2 · 08-17(월)",tag:"비보시티 · 쇼핑 (숙소 유지)",items:[
-   {t:"오전",n:"팬 퍼시픽에서 여유 · 휴식",tr:"체크아웃 없음(2박 동일 숙소)"},
-   {t:"점심",n:"블랙페퍼 크랩 · 식사",en:"Black Pepper Crab",tr:"칠리크랩보다 순함",q:"black pepper crab restaurant Singapore"},
-   {t:"오후",n:"비보시티 쇼핑",en:"VivoCity",tr:"—",q:"VivoCity Singapore"},
-   {t:"저녁",n:"야시장 · 라우파삿 등",en:"Lau Pa Sat",tr:"숙소 인근",q:"Lau Pa Sat Singapore"},
+ {dt:"Day 2 · 08-17(월)",tag:"선텍시티 · 비보시티 · 라우파삿",items:[
+   {t:"09:10",n:"숙소 조식 · 아트리움 로비",tr:"1986년 준공 · 존 포트만 · 35개 층 관통 보이드",arch:true},
+   {t:"10:35",n:"선텍 컨벤션센터 ~ 밀레니아 워크 산책",en:"Suntec Convention",tr:"인장막 구조 그늘막 · 실내 연결통로",q:"Suntec Singapore Convention Centre"},
+   {t:"13:20",n:"숙소 수영장 데크 휴식",tr:"8월 폭염 대비 · 오후 스콜 회피"},
+   {t:"15:15",n:"선텍시티 몰 · 부의 분수",en:"Fountain of Wealth",tr:"풍수 기반 마스터플랜 · 원형 유리 돔 아트리움",q:"Fountain of Wealth Suntec City",arch:true},
+   {t:"15:35",n:"늦은 점심 (몰 내 식당가)",tr:"—"},
+   {t:"16:30",n:"비보시티 · 워터프론트 프롬나드",en:"VivoCity",tr:"토요 이토 설계 · L3 스카이파크 옥상정원",q:"VivoCity Singapore",arch:true},
+   {t:"16:28",n:"센토사·리조트월드 조망",en:"Resorts World Sentosa",tr:"케이블카·항만 크레인 경관",q:"Resorts World Sentosa"},
+   {t:"19:10",n:"라우파삿 · 분탓 스트리트 사테거리",en:"Lau Pa Sat",tr:"1894년 빅토리안 주철 구조 · 팔각 평면",q:"Lau Pa Sat Singapore",arch:true},
+   {t:"20:30",n:"마리나베이 야경 산책",tr:"멀라이언파크~에스플러네이드 방면",q:"Merlion Park Singapore"},
+   {t:"21:25",n:"더 숍스 · 아트사이언스 뮤지엄 야경",tr:"—",q:"ArtScience Museum night"},
+   {t:"21:55",n:"헬릭스 브리지",en:"Helix Bridge",tr:"DNA 이중나선 튜브 트러스 보행교",q:"Helix Bridge Singapore",arch:true},
  ]},
- {dt:"Day 3 · 08-18(화)",tag:"체크아웃 · 자유일정 · 심야 창이 이동",items:[
-   {t:"오전",n:"팬 퍼시픽 체크아웃 · 짐보관",tr:"마지막 숙박(08-17)이므로 오늘 체크아웃"},
-   {t:"종일",n:"자유 관광",tr:"세부 일정 미정"},
-   {t:"옵션",n:"센토사 · S.E.A. 아쿠아리움",en:"S.E.A. Aquarium, Sentosa",tr:"리조트월드 센토사",q:"S.E.A. Aquarium Sentosa Singapore"},
-   {t:"심야",n:"창이공항 이동 (KE646 01:25 대비)",en:"Changi Airport",tr:"짐 찾아 이동",q:"Changi Airport Singapore"},
+ {dt:"Day 3 · 08-18(화)",tag:"시빅 디스트릭트 도보 답사 · 귀국",items:[
+   {t:"09:00",n:"숙소 조식 → 체크아웃 · 짐 보관",tr:"프런트 러기지 서비스 이용"},
+   {t:"12:20",n:"래플스 호텔 일대",en:"Raffles Hotel",tr:"콜로니얼 아케이드동 · 1887년 개관",q:"Raffles Hotel Singapore",arch:true},
+   {t:"12:25",n:"차임스",en:"CHIJMES",tr:"옛 수녀원·고딕 채플의 상업 재생 · 회랑 중정",q:"CHIJMES Singapore",arch:true},
+   {t:"12:45",n:"래플스시티 쇼핑센터",en:"Raffles City",tr:"I. M. 페이 설계 복합",q:"Raffles City Singapore"},
+   {t:"12:56",n:"캐피톨 켐핀스키 호텔",en:"The Capitol Kempinski",tr:"1930년대 신고전주의 보존 + 옥상 증축",q:"Capitol Kempinski Hotel Singapore",arch:true},
+   {t:"13:00",n:"세인트앤드류 대성당",en:"St Andrew's Cathedral",tr:"고딕 리바이벌 백색 첨탑",q:"St Andrew's Cathedral Singapore",arch:true},
+   {t:"13:05",n:"중앙소방서 · 민방위 헤리티지 갤러리",en:"Central Fire Station",tr:"1909년 · 적벽돌+백색 띠 파사드 · 호스타워",q:"Central Fire Station Singapore",arch:true},
+   {t:"13:10",n:"옛 힐스트리트 경찰서 (무지개 창)",en:"Old Hill Street Police Station",tr:"1934년 · 927개 창의 색채 개입",q:"Old Hill Street Police Station Singapore",arch:true},
+   {t:"13:35",n:"클락키 · 송파바쿠테 뉴브리지로점 점심",en:"Clarke Quay",tr:"인장막 스트리트 캐노피 · 보존 숍하우스",q:"Song Fa Bak Kut Teh New Bridge Road"},
+   {t:"15:45",n:"멀라이언 파크 · 애플 마리나베이샌즈",en:"Apple Marina Bay Sands",tr:"2020년 · Foster + Partners · 지름 30m 유리 돔",q:"Apple Marina Bay Sands",arch:true},
+   {t:"17:40",n:"아트사이언스 뮤지엄 · teamLab Future World",en:"teamLab Future World",tr:"2016-03 개관 상설전 · 스케치 아쿠아리움",q:"teamLab Future World ArtScience Museum"},
+   {t:"18:30",n:"마리나베이 석양 · 헬릭스 브리지",tr:"—",q:"Marina Bay sunset Singapore"},
+   {t:"19:25",n:"창이공항 제4터미널 이동 · 체크인",en:"Changi Airport T4",tr:"—",q:"Changi Airport Terminal 4"},
+   {t:"21:00",n:"T4 헤리티지 존 (페라나칸 숍하우스)",tr:"1880~1950년대 숍하우스 파사드 재현 · LED 미니시어터",q:"Changi Airport T4 Heritage Zone",arch:true},
  ]},
- {dt:"Day 4 · 08-19(수)",tag:"귀국 · 싱가포르 → 인천 → 익산",items:[
-   {t:"08-18밤",n:"창이공항 이동 · 체크인·출국수속",tr:"—"},
-   {t:"01:25",n:"창이 출발 ✈ KE646",tr:"→ 인천 08:50",fly:true},
-   {t:"08:50",n:"인천공항 T2 도착 · 입국·수하물·세관",tr:"—"},
-   {t:"오전~오후",n:"인천공항 → 익산 이동",tr:"버스/KTX 선택 · 예매 필요"},
+ {dt:"Day 4 · 08-19(수)",tag:"싱가포르 → 인천 → 익산",items:[
+   {t:"01:25",n:"창이 T4 출발 ✈ 인천행",tr:"→ 인천 08:50 도착",fly:true},
+   {t:"08:50",n:"인천공항 T2 도착 · 입국·수하물·세관",tr:"면세한도 미화 800불",q:"인천공항 제2여객터미널"},
+   {t:"오전~오후",n:"인천공항 → 익산 이동",tr:"공항버스 또는 KTX · 사전 예매 권장"},
  ]},
 ];
 
-// Day0 / Day4 컨텍스트 HTML
-const TRANSPORT_HTML=`
-  <section class="blk"><h2>🚌 교통 확정 정보</h2>
-   <table>
-    <tr><td class="k">익산 출발</td><td>익산공용버스터미널 → (대야·군산·인천 T1) → <b>인천공항 T2</b><br><b>08-15(토) 14:50</b> · 약 3시간 55분 · 승차홈 <b>10</b>/좌석 <b>07</b> · 호남고속</td></tr>
-    <tr><td class="k">예매</td><td>예매 완료 (예매번호는 개인 보관) · <span class="todo">종이 승차권 발권 필요</span></td></tr>
-    <tr><td class="k">출국편</td><td><b>KE647</b> ICN T2 23:35 → 창이 T4 05:00 (A330-300)</td></tr>
-    <tr><td class="k">숙소</td><td>Pan Pacific Singapore · 7 Raffles Blvd · +65 6336 8111<br><b>2박 동일 숙소</b> (08-16·08-17 숙박, 08-18 체크아웃)</td></tr>
-   </table></section>`;
-const DEPART_CK=[
-  ["여권 잔여 유효기간 6개월 이상 확인 (4인)","d0a"],
-  ["SG Arrival Card 제출 완료(08-14) · 승인메일 캡처 지참","d0b"],
-  ["eSIM/유심 개통 · Grab 앱 설치·카드 등록","d0c"],
-  ["익산 버스 종이 승차권 발권 · 항공 웹체크인","d0d"],
-  ["G타입 어댑터 · 우산 · 얇은 겉옷 · 자외선 차단","d0e"],
-  ["상비약(소화제·지사제) · 향신료 대비 메모","d0f"],
-  ["호텔 8/16 얼리체크인 · 짐보관 요청","d0g"],
-  ["입장권 Klook/Traveloka 콤보 사전 구매","d0h"],
+const PREP_CK=[
+  ["여권 잔여 유효기간 <b>6개월 이상</b> 확인","p1"],
+  ["<b>SG Arrival Card</b> 온라인 제출 (도착일 포함 3일 이내)","p2"],
+  ["eSIM/유심 개통 · <b>Grab 앱</b> 설치·결제카드 등록","p3"],
+  ["항공 웹체크인 · 국내 이동편(버스/KTX) 왕복 예매","p4"],
+  ["<b>G타입 3핀 어댑터</b> · 우산 · 얇은 겉옷 · 자외선 차단","p5"],
+  ["상비약(소화제·지사제) · 향신료 대비 메모","p6"],
+  ["새벽 도착이면 <b>얼리체크인·짐보관</b> 사전 요청","p7"],
+  ["주요 입장권 사전 구매 (온라인 콤보가 대체로 저렴)","p8"],
+  ["컨택리스 결제카드 준비 (MRT·버스 태그용)","p9"],
+  ["귀국 시 창이공항 <b>eTRS 세금환급</b> 처리","p10"],
 ];
-const RETURN_CK=[
-  ["기내 수하물 · 여권 · 보조배터리 재확인","d4a"],
-  ["면세한도 (미화 800불 · 주류 2L·US$400 · 궐련 200개비 · 향수 100mL)","d4b"],
-  ["호텔 체크아웃(08-18) · 유실물 점검","d4c"],
-  ["창이 GST 환급(Tourego/eTRS) 처리","d4d"],
-  ["인천→익산 버스/KTX 예매 완료","d4e"],
-  ["로밍/eSIM 국내 전환 · 데이터 확인","d4f"],
-];
-function ckHtml(title,arr){
-  return `<section class="blk"><h2>✅ ${title} <span style="font-size:11px;color:var(--sub);font-weight:600;">(탭하면 체크·저장)</span></h2>
-    <ul class="cklist">`+arr.map(([t,k])=>`<li data-key="ck_${k}"><span class="bx">✓</span><span class="t">${t}</span></li>`).join('')+`</ul></section>`;
+function ckHtml(arr){
+  return arr.map(([t,k])=>`<li data-key="ck2_${k}"><span class="bx">✓</span><span class="t">${t}</span></li>`).join('');
 }
-const MBTI_HTML=`
-  <section class="blk"><h2>🧭 MBTI 맞춤 배려</h2>
-   <div class="mbti">
-    <div class="m"><div class="h">아빠 · ENTP</div><div class="b">다양성·새로움. 부기스·클락키·현지 시장 탐방, 여백 있는 일정.</div></div>
-    <div class="m"><div class="h">딸 · INTJ</div><div class="b">깊이·완성도. 아트사이언스·가든스 온실 심층 관람, 한산한 시간대.</div></div>
-    <div class="m"><div class="h">아들 · ESTJ</div><div class="b">명확한 동선·랜드마크. 멀라이언·마리나베이·비보시티 위주.</div></div>
-    <div class="m"><div class="h">아내 · ISFP</div><div class="b">감각·여유. 가든스 야경·야시장, 강행군 지양, 향신료 배려.</div></div>
-   </div></section>`;
-const ARRIVAL_CARD_BTN=`
-  <section class="blk"><h2>🛂 출입국카드 · 사전 작성</h2>
-   <div class="acts">
-    <a class="act blue" href="https://eservices.ica.gov.sg/sgarrivalcard/" target="_blank" rel="noopener"><span class="ico">🇸🇬</span><span>SG Arrival Card 작성 (ICA)<small>싱가포르 입국 전 필수 · 도착 3일 이내 온라인 제출</small></span></a>
-   </div>
-   <div class="note"><b>✅ 2026-08-14 제출 완료 (4인 그룹)</b> · 승인메일·DE번호 캡처를 각자 휴대폰에 저장하세요.<br>
-    제출 가능 기간은 <b>도착일 포함 3일</b> — 08-16 도착이므로 <b>08-14~08-16</b>입니다. 항공편 지연으로 <b>도착일이 바뀌면 재제출</b>, 발열 등 증상 발생 시 <b>Update SGAC</b>로 갱신하세요.</div>
-  </section>`;
-const IMMI_BTN=`
-  <section class="blk"><h2>🛂 귀국 출입국 · 세관</h2>
-   <div class="acts">
-    <a class="act red" href="https://www.google.com/search?q=%EA%B4%80%EC%84%B8%EC%B2%AD+%EC%97%AC%ED%96%89%EC%9E%90+%ED%9C%B4%EB%8C%80%ED%92%88+%EB%AA%A8%EB%B0%94%EC%9D%BC+%EC%84%B8%EA%B4%80%EC%8B%A0%EA%B3%A0" target="_blank" rel="noopener"><span class="ico">🇰🇷</span><span>한국 입국 세관신고 (모바일)<small>면세 초과 시 자진신고 · 관세청 여행자 휴대품</small></span></a>
-   </div>
-  </section>`;
 
 let curDay=0;
 const mapUrl=q=>"https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(q);
@@ -368,28 +377,28 @@ function renderTimeline(){
   document.getElementById('dayTag').textContent=d.tag;
   document.getElementById('timeline').innerHTML=d.items.map(it=>{
     const en=it.en?`<span class="en">${it.en}</span>`:"";
-    const tr=it.tr&&it.tr!=="—"?`<div class="info"><span class="k">이동/메모</span> ${it.tr}</div>`:"";
+    const tr=it.tr&&it.tr!=="—"?`<div class="info"><span class="k">메모</span> ${it.tr}</div>`:"";
     let links="";
     if(it.q){links=`<div class="links">
       <a class="lnk map" href="${mapUrl(it.q)}" target="_blank" rel="noopener">📍 지도</a>
       <a class="lnk yt" href="${ytUrl(it.q)}" target="_blank" rel="noopener">▶ 영상</a>
       <a class="lnk se" href="${seUrl(it.q)}" target="_blank" rel="noopener">🔍 검색</a></div>`;}
-    return `<div class="item ${it.fly?'fly':''}"><div class="card">
+    const cls=it.fly?'fly':(it.arch?'arch':'');
+    return `<div class="item ${cls}"><div class="card">
       <div class="row1"><span class="time">${it.t}</span><span class="title">${it.n}${en}</span></div>
       ${tr}${links}</div></div>`;
   }).join('');
 }
-function renderExtras(){
-  const el=document.getElementById('dayExtras');
-  if(curDay===0)      el.innerHTML=TRANSPORT_HTML + ckHtml("출발 전 준비 체크리스트",DEPART_CK) + ARRIVAL_CARD_BTN + MBTI_HTML;
-  else if(curDay===4) el.innerHTML=ckHtml("귀국 체크리스트",RETURN_CK) + IMMI_BTN;
-  else                el.innerHTML="";
-  el.querySelectorAll('.cklist li').forEach(li=>{
+function renderExtras(){ document.getElementById('dayExtras').innerHTML=""; }
+
+function initPrep(){
+  const ul=document.getElementById('ckPrep');
+  ul.innerHTML=ckHtml(PREP_CK);
+  ul.querySelectorAll('li').forEach(li=>{
     try{ if(localStorage.getItem(li.dataset.key)==='1') li.classList.add('done'); }catch(e){}
   });
 }
 
-// 환율 계산기 (헤더 팝업 · 로드 시 1회 초기화)
 function initFx(){
   const sgd=document.getElementById('fxSgd'), krw=document.getElementById('fxKrw'), rate=document.getElementById('fxRate');
   if(!sgd) return;
@@ -401,7 +410,6 @@ function initFx(){
   krw.addEventListener('input',fromKrw);
   rate.addEventListener('input',()=>{ try{localStorage.setItem('fxRate',rate.value);}catch(e){} fromSgd(); });
   fromSgd();
-  // 실시간 환율 자동 조회 (무료 API · 실패 시 수동값 유지)
   const st=document.getElementById('fxStatus');
   fetch('https://open.er-api.com/v6/latest/SGD').then(r=>r.json()).then(d=>{
     if(d&&d.rates&&d.rates.KRW){
@@ -414,7 +422,7 @@ function initFx(){
   }).catch(()=>{ if(st) st.textContent='실시간 조회 실패 · 수동값 사용'; });
 }
 
-// ===== 모바일 탭(터치+클릭) =====
+// ===== 모바일 탭 =====
 let lastTouch=0;
 function bindTap(container,selector,handler){
   let sx=0,sy=0,moved=false;
@@ -424,8 +432,7 @@ function bindTap(container,selector,handler){
   container.addEventListener('click',e=>{if(Date.now()-lastTouch<700)return;const el=e.target.closest(selector);if(!el)return;handler(el);});
 }
 bindTap(document.getElementById('days'),'.day-btn',b=>{curDay=+b.dataset.d;renderTimeline();renderDays();renderExtras();});
-// 체크리스트(컨텍스트) — 링크(a) 탭은 제외
-bindTap(document.getElementById('dayExtras'),'.cklist li',li=>{
+bindTap(document.getElementById('ckPrep'),'li',li=>{
   li.classList.toggle('done');
   try{localStorage.setItem(li.dataset.key, li.classList.contains('done')?'1':'0');}catch(e){}
 });
@@ -450,34 +457,25 @@ installBtn.addEventListener('click',async()=>{
 document.getElementById('iosClose').addEventListener('click',()=>iosOv.classList.remove('on'));
 iosOv.addEventListener('click',e=>{ if(e.target===iosOv) iosOv.classList.remove('on'); });
 
-// ===== 환율 계산기 팝업 =====
+// ===== 환율 팝업 =====
 const fxBtn=document.getElementById('fxBtn'), fxOv=document.getElementById('fxOv');
 fxBtn.addEventListener('click',()=>fxOv.classList.add('on'));
 document.getElementById('fxClose').addEventListener('click',()=>fxOv.classList.remove('on'));
 fxOv.addEventListener('click',e=>{ if(e.target===fxOv) fxOv.classList.remove('on'); });
 initFx();
 
-// ===== D-day + 싱가포르 현지 시각 =====
+// ===== 싱가포르 현지 시각 =====
 (function(){
-  const ddayEl=document.getElementById('dday'), clockEl=document.getElementById('sgclock');
-  const dep=new Date('2026-08-15T00:00:00+09:00'), end=new Date('2026-08-19T23:59:59+09:00');
+  const clockEl=document.getElementById('sgclock');
   function tick(){
     const now=new Date();
-    // D-day (한국 날짜 기준)
-    const d0=new Date(dep.getFullYear(),dep.getMonth(),dep.getDate());
-    const t0=new Date(now.getFullYear(),now.getMonth(),now.getDate());
-    const diff=Math.round((d0-t0)/86400000);
-    if(now>end) ddayEl.textContent='여행 종료';
-    else if(now>=dep) ddayEl.textContent='✈ 여행 중';
-    else ddayEl.textContent='출발 D-'+diff;
-    // 싱가포르 현지 시각
     try{ clockEl.textContent='🇸🇬 '+now.toLocaleTimeString('ko-KR',{timeZone:'Asia/Singapore',hour12:false}); }
     catch(e){ clockEl.textContent='🇸🇬 '+now.toLocaleTimeString('ko-KR'); }
   }
   tick(); setInterval(tick,1000);
 })();
 
-renderDays();renderTimeline();renderExtras();
+renderDays();renderTimeline();renderExtras();initPrep();
 </script>
 </body>
 </html>
