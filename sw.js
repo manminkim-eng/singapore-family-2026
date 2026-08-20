@@ -1,5 +1,5 @@
-// MANMIN Family Trip · 서비스워커 (HTML=네트워크 우선, 정적=캐시 우선)
-const CACHE = 'manmin-sg-2026-v3';
+// MANMIN 싱가포르 여행 일정표 · 서비스워커 (HTML=네트워크 우선, 정적=캐시 우선)
+const CACHE = 'manmin-sg-2026-v4';
 const ASSETS = [
   './', './index.html', './favicon.svg',
   './icon-192.png', './icon-512.png', './manifest.json'
